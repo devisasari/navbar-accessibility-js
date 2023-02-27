@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessible Navbar</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#" aria-hidden="true">Home</a></li>
+        <li><a href="#" aria-hidden="true">News</a></li>
+        <li><a href="#" aria-hidden="true">Information</a></li>
+        <li>
+          <a href="#" aria-hidden="true" tabindex="0"
+            >Menu<span>&#x25BC;</span></a
+          >
+          <ul>
+            <li><a href="#" aria-hidden="true">Boiler Replacement</a></li>
+            <li><a href="#" aria-hidden="true">Boilers & Heating Help</a></li>
+          </ul>
+        </li>
+        <li><a href="#" aria-hidden="true">Help</a></li>
+        <li><a href="#" aria-hidden="true">Contact</a></li>
+      </ul>
+    </nav>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      nav {
+        width: 100%;
+        background-color: #f3f3f3;
+        position: relative;
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+        list-style: none;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #666;
+        text-transform: uppercase;
+        padding: 15px 0;
+        display: block;
+        position: relative;
+        z-index: 2;
+      }
+
+      nav ul li a span {
+        font-size: 0.8em;
+        padding-left: 5px;
+      }
+
+      nav ul li a:focus {
+        outline: 1px solid #00f;
+      }
+
+      nav ul li ul {
+        background-color: #f3f3f3;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 200px;
+        display: none;
+        list-style: none;
+        padding: 0;
+        z-index: 1;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      nav ul li:hover ul {
+        display: block;
+      }
+
+      nav ul li ul li a {
+        padding: 10px;
+        display: block;
+      }
+    </style>
+
+    <script>
+      const menu = document.querySelector("nav > ul > li:nth-child(4)");
+      const dropdown = menu.querySelector("ul");
+      const help = document.querySelector("nav > ul > li:nth-child(5)");
+      let isOpen = false;
+
+      menu.addEventListener("keyup", (event) => {
+        if (keyIsEnter(event)) {
+          handleEnter();
+        } else if (keyIsEscape(event)) {
+          handleEscape();
+        }
+      });
+
+      dropdown.addEventListener("keyup", (event) => {
+        if (keyIsEnter(event) || keyIsEscape(event)) {
+          handleEscape();
+        }
+      });
+
+      menu.addEventListener("click", (event) => {
+        handleEnter();
+      });
+
+      help.addEventListener("focusin", () => {
+        closeDropdown();
+      });
+
+      function handleEnter() {
+        isOpen ? closeDropdown() : openDropdown();
+      }
+
+      function handleEscape() {
+        closeDropdown();
+      }
+
+      function openDropdown() {
+        dropdown.style.display = "block";
+        menu.setAttribute("aria-expanded", "true");
+        menu.querySelector("span").innerHTML = "&#x25B2;";
+        isOpen = true;
+      }
+
+      function closeDropdown() {
+        dropdown.style.display = "none";
+        menu.setAttribute("aria-expanded", "false");
+        menu.querySelector("span").innerHTML = "&#x25BC;";
+        isOpen = false;
+      }
+
+      function keyIsEnter(event) {
+        return event.key === "Enter";
+      }
+
+      function keyIsEscape(event) {
+        return event.key === "Escape";
+      }
+    </script>
+  </body>
+</html>
