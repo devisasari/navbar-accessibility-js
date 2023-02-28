@@ -8,9 +8,6 @@
   <body>
     <nav>
       <ul>
-        <li><a href="#" aria-hidden="true">Home</a></li>
-        <li><a href="#" aria-hidden="true">News</a></li>
-        <li><a href="#" aria-hidden="true">Information</a></li>
         <li>
           <a href="#" aria-hidden="true" tabindex="0"
             >Menu<span>&#x25BC;</span></a
@@ -20,6 +17,8 @@
             <li><a href="#" aria-hidden="true">Boilers & Heating Help</a></li>
           </ul>
         </li>
+        <li><a href="#" aria-hidden="true">News</a></li>
+        <li><a href="#" aria-hidden="true">Information</a></li>
         <li><a href="#" aria-hidden="true">Help</a></li>
         <li><a href="#" aria-hidden="true">Contact</a></li>
       </ul>
@@ -88,9 +87,9 @@
     </style>
 
     <script>
-      const menu = document.querySelector("nav > ul > li:nth-child(4)");
+      const menu = document.querySelector("nav > ul > li:nth-child(1)");
       const dropdown = menu.querySelector("ul");
-      const help = document.querySelector("nav > ul > li:nth-child(5)");
+      const news = document.querySelector("nav > ul > li:nth-child(2)");
       let isOpen = false;
 
       menu.addEventListener("keyup", (event) => {
@@ -111,7 +110,7 @@
         handleEnter();
       });
 
-      help.addEventListener("focusin", () => {
+      news.addEventListener("focusin", () => {
         closeDropdown();
       });
 
