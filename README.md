@@ -6,7 +6,9 @@ The navbar is implemented with semantic HTML elements, making it accessible for 
 
 The navbar has been tested on Chrome and Firefox, and should be compatible with other modern browsers.
 
-## Case Study
+- ## [Live](https://devisasari.github.io/navbar-accessibility-js/)
+
+# Case Study
 
 The goal of this project was to create a navbar that was both accessible and keyboard navigable. The following items were taken into consideration when creating the navbar:
 
